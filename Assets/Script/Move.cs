@@ -44,7 +44,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
                             PlayOnAndroid();
 #elif UNITY_WEBGL || UNITY_STANDALONE
         MoveByKeboard();
