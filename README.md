@@ -1,1 +1,2 @@
 # BuildGameCI
+edit build setting
