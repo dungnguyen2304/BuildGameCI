@@ -3,7 +3,6 @@ using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.Build.Reporting;
 
-// https://docs.unity3d.com/Manual/CommandLineArguments.html
 public class JenkinsBuild
 {
 
@@ -14,9 +13,12 @@ public class JenkinsBuild
     {
 
         string appName = "AppName";
-        string targetDir = "~/Desktop";
+        //string targetDir = "~/Desktop";
+        string targetDir = "~/Users/Shared/Jenkins/Home/jobs";
 
-       
+        
+
+
         string[] args = System.Environment.GetCommandLineArgs();
         for (int i = 0; i < args.Length; i++)
         {
@@ -38,10 +40,12 @@ public class JenkinsBuild
         }
 
         string fullPathAndName = targetDir + System.IO.Path.DirectorySeparatorChar + appName + ".app";
-        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX, BuildOptions.None);
+        //BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX, BuildOptions.None);
+        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.WebGL, BuildTarget.WebGL, BuildOptions.None);
+
     }
 
-  
+
     private static string[] FindEnabledEditorScenes()
     {
 
@@ -56,7 +60,7 @@ public class JenkinsBuild
         return EditorScenes.ToArray();
     }
 
-    // e.g. BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX
+
     private static void BuildProject(string[] scenes, string targetDir, BuildTargetGroup buildTargetGroup, BuildTarget buildTarget, BuildOptions buildOptions)
     {
         System.Console.WriteLine("[JenkinsBuild] Building:" + targetDir + " buildTargetGroup:" + buildTargetGroup.ToString() + " buildTarget:" + buildTarget.ToString());
